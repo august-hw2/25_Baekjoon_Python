@@ -1,5 +1,7 @@
 import sys
-input = sys.stdin.readline
+input = sys.stdin.readline 
+#input으로 여러 줄을 받으면, 시간 초과 발생할 수 있음 따라서 해당 구문 넣어주기
+
 n, m = map(int, input().split())
 arr = list(map(int, input().split()))
 sum_arr = [0]

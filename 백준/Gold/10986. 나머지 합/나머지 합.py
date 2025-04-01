@@ -1,22 +1,23 @@
 import sys
 input = sys.stdin.readline
 
+# n개의 수, m으로 나누어 떨어지는...
 n, m = map(int, input().split())
+
+# 원본 리스트
 a = list(map(int, input().split()))
 
-# 누적합을 담을 리스트
-s = [0] * (n + 1)
-for i in range(n):
-    s[i + 1] = s[i] + a[i]
+# 누적합
+r = [0] * m
+tmp = 0
+r[0] = 1  # 중요! 누적합이 0인 경우 포함
 
-# 나머지 카운트 배열
-remainder_count = [0] * m
-answer = 0
+for i in a:
+    tmp += i
+    r[tmp % m] += 1  # 나머지 수 카운팅
 
-# 누적합을 m으로 나눈 나머지를 기반으로 카운트
-for i in range(n + 1):
-    remainder = s[i] % m
-    answer += remainder_count[remainder]
-    remainder_count[remainder] += 1
+res = 0
+for i in r:
+    res += i * (i - 1) // 2  # 조합 공식 nC2
 
-print(answer)
+print(res)
